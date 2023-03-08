@@ -1,5 +1,6 @@
 package anonfile_reg;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -11,8 +12,15 @@ import org.testng.annotations.Test;
  */
 public class registration_Test {
     WebDriver s403o; // interface
+
     @Test
-    public void registration_Test_Case() {
+    public void registration_Test_Case_1() {
+        s403o.findElement(By.xpath("//*[@id='footer']/div[2]/div/a[2]")).click(); // Click Reg btn
+        s403o.findElement(By.xpath("//*[@id='site-wrapper']/div[4]/div[2]/form/div[1]/input")).sendKeys("testing@s403o"); // Username
+        s403o.findElement(By.xpath("//*[@id='site-wrapper']/div[4]/div[2]/form/div[2]/input")).sendKeys("testing@s403o");; // Password
+        s403o.findElement(By.xpath("//*[@id='site-wrapper']/div[4]/div[2]/form/div[3]/input")).sendKeys("testing@s403o");; // confirm Password
+        s403o.findElement(By.xpath("//*[@id='site-wrapper']/div[4]/div[2]/form/input[2]")).click(); // Click Create Account
+
 
     }
 
@@ -23,6 +31,7 @@ public class registration_Test {
         s403o = new ChromeDriver(); // implment interface
         s403o.get("https://anonfiles.com/");
     }
+
     @AfterClass
     public void close_browser() {
         s403o.close();
