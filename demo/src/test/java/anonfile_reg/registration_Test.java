@@ -1,12 +1,15 @@
 package anonfile_reg;
 
-import java.util.NoSuchElementException;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Sleeper;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -33,6 +36,7 @@ public class registration_Test {
             WebElement username = s403o.findElement(By.xpath("//*[@id='navbar']/ul/li/ul/li[1]"));
             Assert.assertEquals(username, "Username: testing@s403o"); // Account Exist!
             
+            
         } catch (Exception e) {
             // Login
             JavascriptExecutor java = (JavascriptExecutor)s403o;
@@ -55,6 +59,9 @@ public class registration_Test {
 
     @AfterClass
     public void close_browser() {
-        // s403o.close();
+        WebElement wait = new WebDriverWait(s403o, Duration.ofSeconds(10))
+        .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='account-bytes-left-readable']")));
+        System.out.println(wait.getText());
+        s403o.close();
     }
 }
